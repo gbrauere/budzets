@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bilances kopsavilkums</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Bilances kopsavilkums</h1>
+
+    <p>Ienākumi: {{ ienakumi }} €</p>
+    <p>Izdevumi: {{ izdevumi }} €</p>
+    <p><strong>Bilance: {{ bilance }} €</strong></p>
+
+    <div style="margin-top:20px;">
+    <a href="/" class="button">Atpakaļ uz galveno lapu</a>
+    </div>
+</body>
+</html>

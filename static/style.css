@@ -1,0 +1,73 @@
+body {
+  position: relative;  /* vajadzīgs, lai ::before būtu attiecībā pret body */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  margin-left: 50px;
+  /* citi pamata stili */
+}
+
+body::before {
+  content: "";
+  position: fixed;  /* fiksēts fonā, kad scrollē */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./images/moneyyyy.jpg'); /* pielāgo ceļu */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;  /* ļoti zems redzamības līmenis */
+  z-index: -1;   /* zem visiem pārējiem elementiem */
+  pointer-events: none; /* neuztvers klikšķus */
+}
+
+h1 {
+    color: rgb(90, 19, 97);
+}
+
+h2{
+    color: rgb(90, 19, 97);
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    padding: 8px;
+    margin: 5px;
+}
+
+button {
+    background-color: rgb(131, 23, 131);
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: rgb(66, 11, 66);
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: rgb(131, 23, 131);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: rgb(66, 11, 66);
+}
+
+li {
+    background: white;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}

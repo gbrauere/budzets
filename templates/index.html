@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Budžeta plānotājs</title>
+    <!-- CSS faila savienošana -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Budžeta plānotājs</h1>
+
+    <!-- Form for pievienot -->
+    <form method="post" action="/pievienot">
+        <input type="text" name="summa" placeholder="Summa" required>
+        <input type="text" name="apraksts" placeholder="Apraksts" required>
+        <select name="tips">
+            <option>Ienākums</option>
+            <option>Izdevums</option>
+        </select>
+        <button type="submit">Pievienot</button>
+    </form>
+
+    <!-- Filtrs -->
+    <form method="get" action="/" style="margin-top:10px;">
+        <label>Filtrēt pēc:</label>
+        <select name="tips_filter">
+            <option value="" {% if tips_filter == "" %}selected{% endif %}>Visi</option>
+            <option value="Ienākums" {% if tips_filter == "Ienākums" %}selected{% endif %}>Ienākumi</option>
+            <option value="Izdevums" {% if tips_filter == "Izdevums" %}selected{% endif %}>Izdevumi</option>
+        </select>
+        <button type="submit">Filtrēt</button>
+    </form>
+
+    <!-- Bilance (aprēķina ienākumus, izdevumus un kopējo bilanci) -->
+    <h2>Bilance:</h2>
+    <p>Ienākumi: {{ ienakumi }} €</p>
+    <p>Izdevumi: {{ izdevumi }} €</p>
+    <p><strong>Kopējā bilance: {{ bilance }} €</strong></p>
+
+    <!-- Ierakstu saraksts -->
+    <h2>Ieraksti:</h2>
+    <ul>
+        {% for ier in dati %}
+        <li>
+            <!-- Izvada ieraksta datumu, tipu, summu un aprakstu -->
+            {{ ier.datums }} | {{ ier.tips }} — {{ ier.summa }} € ({{ ier.apraksts }})
+            <!-- Dzēšanas poga ar apstiprinājuma logu -->
+            <a href="/dzest/{{ loop.index0 }}" class="delete-btn" 
+               onclick="return confirm('Vai tiešām dzēst šo ierakstu?')">✖</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Poga, lai atvērtu kopsavilkuma bilanci -->
+    <div style="margin-top:20px;">
+    <a href="/bilance" class="button">Skatīt bilanci</a>
+    </div>
+</body>
+</html>
